@@ -1,0 +1,69 @@
+@keyframes float {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-20px) rotate(5deg);
+    }
+
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+}
+
+@keyframes spin-slow {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.heroWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 60vh;
+    gap: 40px;
+}
+
+.heroContent {
+    flex: 1;
+    max-width: 600px;
+}
+
+.heroImage {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.dnaIcon {
+    animation: float 6s ease-in-out infinite;
+    /* Removed drop-shadow to avoid analyzing the bounding box if image is not transparent */
+}
+
+@media (max-width: 960px) {
+    .heroWrapper {
+        flex-direction: column-reverse;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .heroContent {
+        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .heroImage {
+        width: 100%;
+        margin-top: 40px;
+    }
+}

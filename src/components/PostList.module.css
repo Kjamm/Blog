@@ -1,0 +1,27 @@
+.filterBar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 40px;
+}
+
+.filterBtn {
+    padding: 8px 16px;
+    border-radius: 20px;
+    background: var(--background-subtle);
+    color: var(--muted);
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.filterBtn:hover {
+    background: #e0e0e0;
+    color: var(--foreground);
+}
+
+.filterBtn.active {
+    background: var(--foreground);
+    color: var(--background);
+}

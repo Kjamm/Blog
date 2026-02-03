@@ -12,14 +12,23 @@ export interface PostProps {
 }
 
 export default function PostCard({ post, basePath = '/posts' }: { post: PostProps, basePath?: string }) {
+    // GitHub Pages repository name (basePath) handling
+    const isProd = process.env.NODE_ENV === 'production';
+    const repoName = '/Blog'; // Your repository name
+    const imagePrefix = isProd ? repoName : '';
+
+    const rawSrc = post.image || "/images/card-thumb.png";
+    const imageSrc = rawSrc.startsWith('/') ? `${imagePrefix}${rawSrc}` : rawSrc;
+
     return (
         <Link href={`${basePath}/${post.id}`} className={styles.card}>
             <div className={styles.imageWrapper}>
                 <Image
-                    src={post.image || "/images/card-thumb.png"}
+                    src={imageSrc}
                     alt={post.title}
                     fill
                     className={styles.image}
+                    unoptimized // Force unoptimized for static export just in case
                 />
             </div>
             <div className={styles.content}>

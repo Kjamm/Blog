@@ -7,9 +7,7 @@ image: "/images/image.jpeg"
 ---
 
 ![image](https://github.com/user-attachments/assets/8a7b448e-ee6a-408c-a2ee-ae7fb86b5f60)
-
 ![image](https://github.com/user-attachments/assets/fb08d181-7335-455a-a80c-f8cbebb7327b)
-
 ![image](https://github.com/user-attachments/assets/b894bcaa-0759-4046-b832-fc359c4718a2)
 ![image](https://github.com/user-attachments/assets/792fe03e-f8c2-4981-8906-8d6c138b8345)
 ![image](https://github.com/user-attachments/assets/b034d4b4-930c-431d-8d41-60e8ebed5acd)

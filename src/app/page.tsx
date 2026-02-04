@@ -1,5 +1,8 @@
 
+import Link from "next/link";
+
 export default function Home() {
+
   return (
     <div className="container" style={{ paddingTop: '8vh', paddingBottom: '80px' }}>
       <div style={{ maxWidth: '800px' }}>
@@ -29,12 +32,12 @@ export default function Home() {
           </p>
           <p>
             I believe that great software is not just about code, but about how it affects the people who use it.
-            When I'm not coding, I write about my learnings on my <a href="/blog" style={{ textDecoration: 'underline', color: 'var(--foreground)' }}>blog</a>.
+            When I'm not coding, I write about my learnings on my <Link href="/blog" style={{ textDecoration: 'underline', color: 'var(--foreground)' }}>blog</Link>.
           </p>
         </div>
 
         <div style={{ marginTop: '48px', display: 'flex', gap: '20px' }}>
-          <a href="/portfolio" style={{
+          <Link href="/portfolio" style={{
             background: 'var(--foreground)',
             color: 'var(--background)',
             padding: '16px 32px',
@@ -44,7 +47,7 @@ export default function Home() {
             alignItems: 'center',
           }}>
             View Portfolio
-          </a>
+          </Link>
           <a href="https://github.com/Kjamm" target="_blank" style={{
             background: 'var(--background-subtle)',
             color: 'var(--foreground)',

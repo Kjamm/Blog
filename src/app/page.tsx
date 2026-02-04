@@ -49,8 +49,8 @@ export default function Home() {
             View Portfolio
           </Link>
           <a href="https://github.com/Kjamm" target="_blank" style={{
-            background: 'var(--background-subtle)',
-            color: 'var(--foreground)',
+            background: 'var(--foreground)',
+            color: 'var(--background)',
             padding: '16px 32px',
             borderRadius: '50px',
             fontWeight: 600,

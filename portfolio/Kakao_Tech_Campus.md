@@ -6,6 +6,8 @@ excerpt: "AI based note-taking app"
 image: "/images/image.jpeg"
 ---
 
+일반적인 카카오테크캠퍼스 후기는 Blog 탭에서 확인 가능합니다.
+
 ![image](https://github.com/user-attachments/assets/8a7b448e-ee6a-408c-a2ee-ae7fb86b5f60)
 ![image](https://github.com/user-attachments/assets/fb08d181-7335-455a-a80c-f8cbebb7327b)
 ![image](https://github.com/user-attachments/assets/b894bcaa-0759-4046-b832-fc359c4718a2)

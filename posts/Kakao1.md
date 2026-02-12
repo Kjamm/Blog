@@ -6,7 +6,9 @@ excerpt: ""
 image: "/images/kako1.png"
 ---
 
-## Kakao Tech Campus 합격
+
+
+## 카카오 테크 캠퍼스 합격 후기
 
 어느날 학과 단체 공지방에 <span style="background-color: rgba(165, 42, 42, 0.5);">Kakao Tech Campus</span>를 모집한다는 글이 올라왔다.
 관심없게 지나가려다 **카카오** 이름 값에 눈길이 가 여러가지 찾아보니 '나에게도 굉장히 좋은 프로그램이 될 수 있겠다' 라는 것을 느꼈다.

@@ -6,7 +6,7 @@ excerpt: ""
 image: "/images/kako3.png"
 ---
 
-## 카테캠 Step 2 수료
+## 카카오 테크 캠퍼스 Step 2 수료
 
 10주차의 <span style="background-color: rgba(165, 42, 42, 0.5);">Step 1</span>이 끝나고 바로 <span style="background-color: rgba(165, 42, 42, 0.5);">Step 2</span>에 돌입했다.
 

@@ -63,12 +63,13 @@
 
 @media (max-width: 768px) {
     .nav {
-        gap: 16px;
+        gap: 12px;
         font-size: 0.9rem;
     }
 
     .link {
         font-size: 0.9rem;
+        white-space: nowrap;
     }
 
     .iconBtn {

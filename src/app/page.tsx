@@ -1,5 +1,5 @@
-
 import Link from "next/link";
+import styles from "./page.module.css";
 
 export default function Home() {
 
@@ -23,16 +23,12 @@ export default function Home() {
           marginBottom: '32px',
           letterSpacing: '-0.02em'
         }}>
-          Hello, I'm <br />
-          <span style={{ color: 'var(--muted-light)' }}>Jaemin Kim</span>
+          <span style={{ color: 'var(--muted-light)' }}>Hello, I'm</span> <br />
+          Jaemin Kim
         </h1>
         <div style={{ fontSize: '1.25rem', lineHeight: 1.7, color: 'var(--muted)', display: 'flex', flexDirection: 'column', gap: '24px', alignItems: 'center' }}>
           <p>
             I'm majoring in bioinformatics and AI, and now I'm studying computational biology.
-          </p>
-          <p>
-            I believe that great software is not just about code, but about how it affects the people who use it.
-            When I'm not coding, I write about my learnings on my <Link href="/blog" style={{ textDecoration: 'underline', color: 'var(--foreground)' }}>blog</Link>.
           </p>
         </div>
 
@@ -46,7 +42,18 @@ export default function Home() {
             display: 'inline-flex',
             alignItems: 'center',
           }}>
-            View Portfolio
+            Portfolio
+          </Link>
+          <Link href="/blog" style={{
+            background: 'var(--foreground)',
+            color: 'var(--background)',
+            padding: '16px 32px',
+            borderRadius: '50px',
+            fontWeight: 600,
+            display: 'inline-flex',
+            alignItems: 'center',
+          }}>
+            Blog
           </Link>
           <a href="https://github.com/Kjamm" target="_blank" style={{
             background: 'var(--foreground)',
@@ -61,7 +68,7 @@ export default function Home() {
           </a>
         </div>
 
-        <div style={{ marginTop: '24px', width: '100%' }}>
+        <div style={{ marginTop: '40px', width: '100%' }}>
           <p style={{
             color: 'var(--accent)',
             fontWeight: 700,
@@ -72,28 +79,22 @@ export default function Home() {
           }}>
             Tech Stack
           </p>
-          <div style={{ display: 'grid', gap: '32px' }}>
+          <div className={styles.techGrid}>
             {[
-              { category: 'Bioinformatics', items: ['Python', 'R', 'Linux'] },
-              { category: 'Front-end', items: ['Android', 'Kotlin', 'React'] },
-              { category: 'Machine learning & Deep learning', items: ['Python', 'R'] },
-              { category: 'Database', items: ['MySQL'] },
-              { category: 'Back-end', items: ['Java', 'PHP'] }
+              { category: 'Bioinformatics', icon: '🧬', items: ['Python', 'R', 'Linux'] },
+              { category: 'Front-end', icon: '💻', items: ['Android', 'Kotlin', 'React'] },
+              { category: 'Machine & Deep Learning', icon: '🤖', items: ['Python', 'R'] },
+              { category: 'Database', icon: '🗄️', items: ['MySQL'] },
+              { category: 'Back-end', icon: '⚙️', items: ['Java', 'PHP'] }
             ].map((section) => (
-              <div key={section.category}>
-                <h3 style={{ fontSize: '1rem', fontWeight: 600, marginBottom: '12px' }}>
+              <div key={section.category} className={styles.techCard}>
+                <div className={styles.techCategoryHeader}>
+                  <div className={styles.techIcon}>{section.icon}</div>
                   {section.category}
-                </h3>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', justifyContent: 'center' }}>
+                </div>
+                <div className={styles.techTags}>
                   {section.items.map((item) => (
-                    <span key={item} style={{
-                      padding: '8px 16px',
-                      borderRadius: '20px',
-                      background: 'var(--background-subtle)',
-                      border: '1px solid var(--border)',
-                      fontSize: '1rem',
-                      fontWeight: 500
-                    }}>
+                    <span key={item} className={styles.techTag}>
                       {item}
                     </span>
                   ))}

@@ -1,5 +1,4 @@
-import PostCard from "@/components/PostCard";
-import styles from "@/app/page.module.css";
+import PostList from "@/components/PostList";
 import { getSortedPortfolioData } from "@/lib/posts";
 
 export const metadata = {
@@ -18,15 +17,7 @@ export default function PortfolioPage() {
                 </h1>
             </div>
 
-            <div className={styles.grid}>
-                {projects.length > 0 ? (
-                    projects.map((project) => (
-                        <PostCard key={project.id} post={project} basePath="/portfolio" />
-                    ))
-                ) : (
-                    <p style={{ color: 'var(--muted)' }}>No projects found.</p>
-                )}
-            </div>
+            <PostList allPosts={projects} basePath="/portfolio" />
         </div>
     );
 }

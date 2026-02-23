@@ -3,7 +3,7 @@ title: "Composing Programs - 1"
 date: "2026.02.23"
 tag: "Programming"
 excerpt: ""
-image: "/images/Cp.png"
+image: "/images/CP.png"
 ---
 
 ![](https://velog.velcdn.com/images/kjamm/post/cdccad7c-bc77-41f0-a33e-367053fc99b6/image.png)

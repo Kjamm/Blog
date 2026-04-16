@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styles from "./page.module.css";
+import BorderGlow from "@/components/BorderGlow";
 
 export default function Home() {
 
@@ -87,19 +88,33 @@ export default function Home() {
               { category: 'Database', icon: '🗄️', items: ['MySQL'] },
               { category: 'Back-end', icon: '⚙️', items: ['Java', 'PHP'] }
             ].map((section) => (
-              <div key={section.category} className={styles.techCard}>
-                <div className={styles.techCategoryHeader}>
-                  <div className={styles.techIcon}>{section.icon}</div>
-                  {section.category}
+              <BorderGlow
+                key={section.category}
+                className={styles.techCard}
+                edgeSensitivity={0}
+                glowColor="40 80 80"
+                backgroundColor="var(--background-subtle)"
+                borderRadius={16}
+                glowRadius={35}
+                glowIntensity={1.3}
+                coneSpread={26}
+                animated
+                colors={['#c084fc', '#f472b6', '#38bdf8']}
+              >
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                  <div className={styles.techCategoryHeader}>
+                    <div className={styles.techIcon}>{section.icon}</div>
+                    {section.category}
+                  </div>
+                  <div className={styles.techTags}>
+                    {section.items.map((item) => (
+                      <span key={item} className={styles.techTag}>
+                        {item}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-                <div className={styles.techTags}>
-                  {section.items.map((item) => (
-                    <span key={item} className={styles.techTag}>
-                      {item}
-                    </span>
-                  ))}
-                </div>
-              </div>
+              </BorderGlow>
             ))}
           </div>
         </div>

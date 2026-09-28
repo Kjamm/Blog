@@ -1,69 +1,43 @@
-@keyframes float {
-    0% {
-        transform: translateY(0px) rotate(0deg);
-    }
-
-    50% {
-        transform: translateY(-20px) rotate(5deg);
-    }
-
-    100% {
-        transform: translateY(0px) rotate(0deg);
-    }
+.hero { padding: 80px 0 96px; text-align: center; background: var(--background-subtle); }
+.eyebrow { font-size: 14px; font-weight: 600; margin-bottom: 24px; }
+.title { font-family: var(--font-display); font-size: 56px; font-weight: 600; line-height: 1.07; letter-spacing: -0.374px; }
+.title span { color: var(--muted); }
+.intro { max-width: 580px; margin: 28px auto 0; font-size: 24px; font-weight: 300; line-height: 1.5; text-wrap: pretty; }
+.actions { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+.primaryButton, .secondaryButton { min-height: 48px; padding: 11px 24px; border-radius: 9999px; border: 1px solid var(--primary); transition: transform 160ms ease; }
+.primaryButton { background: var(--primary); color: var(--primary-foreground); }
+.secondaryButton { color: var(--accent); }
+.textLink { display: inline-flex; align-items: center; gap: 4px; min-height: 44px; padding: 0 8px; color: var(--accent); }
+.primaryButton:active, .secondaryButton:active, .textLink:active { transform: scale(0.95); }
+.stack { background: var(--surface-dark); color: var(--on-dark); padding: 80px 0; }
+.sectionHeading { display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; margin-bottom: 48px; }
+.sectionHeading h2 { font-family: var(--font-display); font-size: 40px; font-weight: 600; line-height: 1.1; letter-spacing: -0.374px; }
+.sectionHeading h2 span { color: var(--on-dark-muted); }
+.sectionHeading > p { font-size: 17px; color: var(--on-dark-muted); }
+.techGrid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 24px; }
+.techCard { grid-column: span 2; background: var(--surface-dark-raised); padding: 32px; border-radius: var(--radius); }
+.techCard:nth-child(-n+2) { grid-column: span 3; }
+.cardTop { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+.index { color: var(--on-dark-muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+.techCard h3 { font-size: 21px; font-weight: 600; line-height: 1.25; margin-bottom: 12px; }
+.techTags { color: var(--on-dark-muted); font-size: 17px; }
+@media (max-width: 1068px) { .title { font-size: 40px; } }
+@media (max-width: 833px) {
+  .techGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .techCard, .techCard:nth-child(-n+2) { grid-column: span 1; }
+  .techCard:last-child { grid-column: 1 / -1; }
+  .sectionHeading { align-items: flex-start; }
 }
-
-@keyframes spin-slow {
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
+@media (max-width: 640px) {
+  .hero { padding: 64px 0; }
+  .title { font-size: 34px; }
+  .intro { font-size: 21px; max-width: 420px; }
+  .stack { padding: 48px 0; }
+  .sectionHeading { flex-direction: column; gap: 24px; margin-bottom: 32px; }
+  .sectionHeading h2 { font-size: 34px; }
+  .techGrid { grid-template-columns: 1fr; gap: 16px; }
+  .techCard { padding: 24px; }
+  .cardTop { margin-bottom: 32px; }
+  .actions { gap: 12px; }
 }
-
-.heroWrapper {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    min-height: 60vh;
-    gap: 40px;
-}
-
-.heroContent {
-    flex: 1;
-    max-width: 600px;
-}
-
-.heroImage {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-}
-
-.dnaIcon {
-    animation: float 6s ease-in-out infinite;
-    /* Removed drop-shadow to avoid analyzing the bounding box if image is not transparent */
-}
-
-@media (max-width: 960px) {
-    .heroWrapper {
-        flex-direction: column-reverse;
-        text-align: center;
-        justify-content: center;
-    }
-
-    .heroContent {
-        max-width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .heroImage {
-        width: 100%;
-        margin-top: 40px;
-    }
-}
+@media (max-width: 419px) { .title { font-size: 28px; } .primaryButton, .secondaryButton { padding-inline: 20px; } }

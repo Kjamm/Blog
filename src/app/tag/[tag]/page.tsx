@@ -18,15 +18,16 @@ export default async function TagPage({ params }: { params: Promise<{ tag: strin
     const displayTag = decodedTag.charAt(0).toUpperCase() + decodedTag.slice(1);
 
     return (
-        <div className="container">
-            <div style={{ marginBottom: '60px', marginTop: '20px' }}>
-                <p style={{ color: 'var(--accent)', fontSize: '1rem', fontWeight: 700, marginBottom: '8px', textTransform: 'uppercase' }}>
+        <div className={styles.listing}>
+          <div className="container">
+            <div className={styles.pageHeading}>
+                <p className={styles.eyebrow}>
                     Tag
                 </p>
-                <h1 style={{ fontSize: '3rem', fontWeight: 800 }}>
+                <h1 className={styles.pageTitle}>
                     {displayTag}
                 </h1>
-                <p style={{ color: 'var(--muted)', fontSize: '1.125rem', marginTop: '16px' }}>
+                <p className={styles.description}>
                     {posts.length} {posts.length === 1 ? 'post' : 'posts'} found
                 </p>
             </div>
@@ -40,6 +41,7 @@ export default async function TagPage({ params }: { params: Promise<{ tag: strin
                     <p style={{ color: 'var(--muted)' }}>No posts found for this tag.</p>
                 )}
             </div>
+          </div>
         </div>
     );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from 'react';
+import { Search } from 'lucide-react';
 import PostCard, { PostProps } from './PostCard';
 import styles from './PostList.module.css';
 import gridStyles from '@/app/page.module.css';
@@ -31,6 +32,7 @@ export default function PostList({ allPosts, allTags = [], basePath = '/posts' }
                         <button
                             className={`${styles.filterBtn} ${selectedTag === 'All' ? styles.active : ''}`}
                             onClick={() => setSelectedTag('All')}
+                            aria-pressed={selectedTag === 'All'}
                         >
                             All
                         </button>
@@ -39,6 +41,7 @@ export default function PostList({ allPosts, allTags = [], basePath = '/posts' }
                                 key={tag}
                                 className={`${styles.filterBtn} ${selectedTag.toLowerCase() === tag.toLowerCase() ? styles.active : ''}`}
                                 onClick={() => setSelectedTag(tag)}
+                                aria-pressed={selectedTag.toLowerCase() === tag.toLowerCase()}
                             >
                                 {tag.charAt(0).toUpperCase() + tag.slice(1)}
                             </button>
@@ -47,8 +50,10 @@ export default function PostList({ allPosts, allTags = [], basePath = '/posts' }
                 )}
 
                 <div className={styles.searchBar}>
+                    <Search size={18} className={styles.searchIcon} aria-hidden="true" />
                     <input
                         type="text"
+                        aria-label="Search by title"
                         placeholder="Search by title..."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
@@ -63,7 +68,7 @@ export default function PostList({ allPosts, allTags = [], basePath = '/posts' }
                         <PostCard key={post.id} post={post} basePath={basePath} />
                     ))
                 ) : (
-                    <p style={{ color: 'var(--muted)', width: '100%' }}>No posts found.</p>
+                    <p className={styles.empty}>No posts found.</p>
                 )}
             </div>
         </div>

@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { ArrowUpRight } from 'lucide-react';
 import styles from './PostCard.module.css';
 
 export interface PostProps {
@@ -25,6 +26,7 @@ export default function PostCard({ post, basePath = '/posts' }: { post: PostProp
                     src={imageSrc}
                     alt={post.title}
                     fill
+                    sizes="(max-width: 640px) calc(100vw - 48px), (max-width: 1068px) 50vw, 380px"
                     className={styles.image}
                     unoptimized // Force unoptimized for static export just in case
                 />
@@ -35,7 +37,10 @@ export default function PostCard({ post, basePath = '/posts' }: { post: PostProp
                 </div>
                 <h3 className={styles.title}>{post.title}</h3>
                 <p className={styles.excerpt}>{post.excerpt}</p>
-                <div className={styles.meta}>{post.date}</div>
+                <div className={styles.meta}>
+                    <span>{post.date}</span>
+                    <span className={styles.arrow}><ArrowUpRight size={20} aria-hidden="true" /></span>
+                </div>
             </div>
         </Link>
     );

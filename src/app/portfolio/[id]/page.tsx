@@ -17,12 +17,12 @@ export default async function PortfolioDetailPage({ params }: { params: Promise<
         <article className={styles.article}>
             <header className={styles.header}>
                 <div className={styles.tags}>
-                    <span className={styles.tag} style={{ color: 'var(--foreground)', background: 'var(--background-subtle)', padding: '4px 12px', borderRadius: '4px' }}>
+                    <span className={styles.tag}>
                         {projectData.tag}
                     </span>
                 </div>
                 <h1 className={styles.title}>{projectData.title}</h1>
-                <div className={styles.meta} style={{ marginTop: '16px' }}>
+                <div className={styles.meta}>
                     {projectData.date}
                 </div>
             </header>

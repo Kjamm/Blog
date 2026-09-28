@@ -1,9 +1,11 @@
-.hero { padding: 80px 0 96px; text-align: center; background: var(--background-subtle); }
+.hero { padding: 48px 0 64px; background: var(--background-subtle); }
+.heroLayout { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 48px; }
+.heroCopy { padding: 32px 0; }
 .eyebrow { font-size: 14px; font-weight: 600; margin-bottom: 24px; }
 .title { font-family: var(--font-display); font-size: 56px; font-weight: 600; line-height: 1.07; letter-spacing: -0.374px; }
 .title span { color: var(--muted); }
-.intro { max-width: 580px; margin: 28px auto 0; font-size: 24px; font-weight: 300; line-height: 1.5; text-wrap: pretty; }
-.actions { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
+.intro { max-width: 500px; margin: 28px 0 0; font-size: 24px; font-weight: 300; line-height: 1.5; text-wrap: pretty; }
+.actions { display: flex; align-items: center; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
 .primaryButton, .secondaryButton { min-height: 48px; padding: 11px 24px; border-radius: 9999px; border: 1px solid var(--primary); transition: transform 160ms ease; }
 .primaryButton { background: var(--primary); color: var(--primary-foreground); }
 .secondaryButton { color: var(--accent); }
@@ -23,13 +25,17 @@
 .techTags { color: var(--on-dark-muted); font-size: 17px; }
 @media (max-width: 1068px) { .title { font-size: 40px; } }
 @media (max-width: 833px) {
+  .heroLayout { grid-template-columns: 1fr; gap: 8px; text-align: center; }
+  .heroCopy { padding: 16px 0 0; }
+  .intro { margin-inline: auto; }
+  .actions { justify-content: center; }
   .techGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .techCard, .techCard:nth-child(-n+2) { grid-column: span 1; }
   .techCard:last-child { grid-column: 1 / -1; }
   .sectionHeading { align-items: flex-start; }
 }
 @media (max-width: 640px) {
-  .hero { padding: 64px 0; }
+  .hero { padding: 48px 0 32px; }
   .title { font-size: 34px; }
   .intro { font-size: 21px; max-width: 420px; }
   .stack { padding: 48px 0; }

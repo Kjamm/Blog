@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight, BrainCircuit, Code2, Database, Dna, Server } from "lucide-react";
 import styles from "./home.module.css";
+import DnaHelix from "@/components/DnaHelix";
 
 const technologies = [
   { category: 'Bioinformatics', icon: Dna, items: ['Python', 'R', 'Linux'] },
@@ -14,21 +15,24 @@ export default function Home() {
   return (
     <>
       <section className={styles.hero} aria-labelledby="intro-title">
-        <div className="container">
-          <p className={styles.eyebrow}>About me</p>
-          <h1 id="intro-title" className={styles.title}>
-            <span>Hello, I&apos;m</span><br />Jaemin Kim.
-          </h1>
-          <p className={styles.intro}>
-            I&apos;m majoring in bioinformatics and AI, and now I&apos;m studying computational biology.
-          </p>
-          <div className={styles.actions}>
-            <Link href="/portfolio" className={styles.primaryButton}>Portfolio</Link>
-            <Link href="/blog" className={styles.secondaryButton}>Blog</Link>
-            <a href="https://github.com/Kjamm" target="_blank" rel="noopener noreferrer" className={styles.textLink}>
-              GitHub <ArrowUpRight size={17} aria-hidden="true" />
-            </a>
+        <div className={`container ${styles.heroLayout}`}>
+          <div className={styles.heroCopy}>
+            <p className={styles.eyebrow}>About me</p>
+            <h1 id="intro-title" className={styles.title}>
+              <span>Hello, I&apos;m</span><br />Jaemin Kim.
+            </h1>
+            <p className={styles.intro}>
+              I&apos;m majoring in bioinformatics and AI, and now I&apos;m studying computational biology.
+            </p>
+            <div className={styles.actions}>
+              <Link href="/portfolio" className={styles.primaryButton}>Portfolio</Link>
+              <Link href="/blog" className={styles.secondaryButton}>Blog</Link>
+              <a href="https://github.com/Kjamm" target="_blank" rel="noopener noreferrer" className={styles.textLink}>
+                GitHub <ArrowUpRight size={17} aria-hidden="true" />
+              </a>
+            </div>
           </div>
+          <DnaHelix />
         </div>
       </section>
       <section className={styles.stack} aria-labelledby="stack-title">

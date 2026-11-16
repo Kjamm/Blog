@@ -1,10 +1,20 @@
-.card { display: flex; flex-direction: column; overflow: hidden; background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius); height: 100%; min-width: 0; }
-.imageWrapper { width: 100%; aspect-ratio: 16 / 9; position: relative; background: var(--divider); overflow: hidden; }
-.image { object-fit: cover; }
-.content { display: flex; flex-direction: column; flex: 1; padding: 24px; }
-.tags { display: flex; gap: 8px; margin-bottom: 12px; }
-.tag { color: var(--muted); font-size: 12px; font-weight: 600; letter-spacing: 0; overflow-wrap: anywhere; }
-.title { font-family: var(--font-display); font-size: 24px; font-weight: 600; margin-bottom: 12px; line-height: 1.25; letter-spacing: -0.374px; color: var(--foreground); overflow-wrap: anywhere; }
-.excerpt { color: var(--muted); font-size: 17px; line-height: 1.47; margin-bottom: 24px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-.meta { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: auto; color: var(--muted); font-size: 12px; }
-.arrow { display: flex; align-items: center; justify-content: center; color: var(--accent); }
+/* Doubled class: these must win over the vendored .glare-hover defaults. */
+.card.card { display: grid; place-items: stretch; min-width: 0; height: 100%; }
+
+.link { display: flex; flex-direction: column; min-width: 0; height: 100%; border-radius: inherit; }
+.link:focus-visible { outline-offset: -2px; border-radius: var(--radius); }
+
+.imageWrapper { width: 100%; aspect-ratio: 16 / 9; position: relative; background: var(--surface-raised); overflow: hidden; }
+.image { object-fit: cover; transition: transform 300ms var(--ease-out); }
+
+.content { display: flex; flex-direction: column; flex: 1; padding: 22px 24px 20px; }
+.tag { margin-bottom: 10px; color: var(--accent); font-size: 13px; font-weight: 500; overflow-wrap: anywhere; }
+.title { font-family: var(--font-display); font-size: 23px; font-weight: 600; margin-bottom: 10px; line-height: 1.25; letter-spacing: -0.02em; overflow-wrap: anywhere; }
+.excerpt { color: var(--muted); font-size: 16px; line-height: 1.5; margin-bottom: 20px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.meta { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: auto; padding-top: 12px; color: var(--faint); font-size: 13px; font-variant-numeric: tabular-nums; }
+.arrow { display: flex; color: var(--muted); transition: transform 200ms var(--ease-out), color 200ms ease; }
+
+@media (hover: hover) and (pointer: fine) {
+  .link:hover .image { transform: scale(1.04); }
+  .link:hover .arrow { transform: translate(3px, -3px); color: var(--accent); }
+}

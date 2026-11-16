@@ -1,5 +1,7 @@
 import styles from "@/app/page.module.css";
 import { getAllTags, getSortedPostsData } from "@/lib/posts";
+import ListingHeader from "@/components/ListingHeader";
+import PageTransition from "@/components/PageTransition";
 import PostList from "@/components/PostList";
 
 export const metadata = {
@@ -12,17 +14,13 @@ export default function BlogPage() {
     const tags = getAllTags();
 
     return (
-        <div className={styles.listing}>
-          <div className="container">
-            <div className={styles.pageHeading}>
-                <p className={styles.eyebrow}>Notes & discoveries</p>
-                <h1 className={styles.pageTitle}>
-                    Tech <span>Blog.</span>
-                </h1>
+        <PageTransition>
+            <div className={styles.listing}>
+                <ListingHeader title="Tech Blog." description="Notes & discoveries" />
+                <div className="container">
+                    <PostList allPosts={posts} allTags={tags} />
+                </div>
             </div>
-
-            <PostList allPosts={posts} allTags={tags} />
-          </div>
-        </div>
+        </PageTransition>
     );
 }

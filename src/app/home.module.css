@@ -1,49 +1,147 @@
-.hero { padding: 48px 0 64px; background: var(--background-subtle); }
-.heroLayout { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 48px; }
-.heroCopy { padding: 32px 0; }
-.eyebrow { font-size: 14px; font-weight: 600; margin-bottom: 24px; }
-.title { font-family: var(--font-display); font-size: 56px; font-weight: 600; line-height: 1.07; letter-spacing: -0.374px; }
-.title span { color: var(--muted); }
-.intro { max-width: 500px; margin: 28px 0 0; font-size: 24px; font-weight: 300; line-height: 1.5; text-wrap: pretty; }
-.actions { display: flex; align-items: center; flex-wrap: wrap; gap: 16px; margin-top: 32px; }
-.primaryButton, .secondaryButton { min-height: 48px; padding: 11px 24px; border-radius: 9999px; border: 1px solid var(--primary); transition: transform 160ms ease; }
-.primaryButton { background: var(--primary); color: var(--primary-foreground); }
-.secondaryButton { color: var(--accent); }
-.textLink { display: inline-flex; align-items: center; gap: 4px; min-height: 44px; padding: 0 8px; color: var(--accent); }
-.primaryButton:active, .secondaryButton:active, .textLink:active { transform: scale(0.95); }
-.stack { background: var(--surface-dark); color: var(--on-dark); padding: 80px 0; }
-.sectionHeading { display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; margin-bottom: 48px; }
-.sectionHeading h2 { font-family: var(--font-display); font-size: 40px; font-weight: 600; line-height: 1.1; letter-spacing: -0.374px; }
-.sectionHeading h2 span { color: var(--on-dark-muted); }
-.sectionHeading > p { font-size: 17px; color: var(--on-dark-muted); }
-.techGrid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 24px; }
-.techCard { grid-column: span 2; background: var(--surface-dark-raised); padding: 32px; border-radius: var(--radius); }
+/* ---- Tool marquee ---- */
+.marquee {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 30px 0 26px;
+  border-block: 1px solid var(--hairline);
+}
+
+
+.tool {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* ---- Statement ---- */
+.statement { position: relative; isolation: isolate; overflow: clip; padding: clamp(96px, 18svh, 200px) 0 clamp(72px, 12svh, 140px); }
+
+/* Doubled classes: these must win over the vendored .scroll-reveal defaults. */
+.statementHeading.statementHeading { margin: 0; max-width: 17ch; font-size: clamp(40px, 7.4vw, 112px); }
+
+.statementText.statementText {
+  font-family: var(--font-display);
+  font-size: inherit;
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+}
+
+.figures {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px clamp(40px, 8vw, 120px);
+  margin-top: clamp(56px, 9svh, 104px);
+  padding-top: 32px;
+  border-top: 1px solid var(--hairline);
+  list-style: none;
+}
+
+.figure {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  font-family: var(--font-display);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.figureLabel {
+  font-family: var(--font-body);
+  font-size: 17px;
+  letter-spacing: 0;
+  color: var(--muted);
+  transition: color 160ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .figure:hover .figureLabel { color: var(--accent); }
+}
+
+/* ---- Section headings ---- */
+.sectionHeading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px 32px;
+  margin-bottom: clamp(32px, 5svh, 56px);
+}
+
+.sectionTitle {
+  font-family: var(--font-display);
+  font-size: clamp(34px, 4.6vw, 60px);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+}
+
+.sectionNote { color: var(--muted); font-size: 19px; }
+
+.moreLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 44px;
+  color: var(--accent);
+}
+
+/* ---- Tech stack ---- */
+/* overflow-x: the cards' edge glow reaches past the gutter on narrow screens. */
+.stack { overflow-x: clip; padding: clamp(64px, 10svh, 120px) 0; }
+
+.techGrid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 20px; }
+
+.techCard { grid-column: span 2; }
 .techCard:nth-child(-n+2) { grid-column: span 3; }
-.cardTop { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
-.index { color: var(--on-dark-muted); font-size: 12px; font-variant-numeric: tabular-nums; }
-.techCard h3 { font-size: 21px; font-weight: 600; line-height: 1.25; margin-bottom: 12px; }
-.techTags { color: var(--on-dark-muted); font-size: 17px; }
-@media (max-width: 1068px) { .title { font-size: 40px; } }
+.techCardBody { padding: 32px; }
+
+.techIcon { color: var(--accent); margin-bottom: 44px; }
+
+.techCard h3 {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+
+.chips { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; }
+
+.chips li {
+  padding: 5px 13px;
+  border-radius: 9999px;
+  box-shadow: inset 0 0 0 1px var(--hairline-strong);
+  color: var(--muted);
+  font-size: 15px;
+}
+
+/* ---- Latest writing ---- */
+.recent { padding: clamp(64px, 10svh, 120px) 0 clamp(80px, 12svh, 140px); }
+
+.recentGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+
+@media (max-width: 1068px) {
+  .recentGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .recentGrid > :nth-child(3) { display: none; }
+}
+
 @media (max-width: 833px) {
-  .heroLayout { grid-template-columns: 1fr; gap: 8px; text-align: center; }
-  .heroCopy { padding: 16px 0 0; }
-  .intro { margin-inline: auto; }
-  .actions { justify-content: center; }
   .techGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .techCard, .techCard:nth-child(-n+2) { grid-column: span 1; }
   .techCard:last-child { grid-column: 1 / -1; }
-  .sectionHeading { align-items: flex-start; }
 }
+
 @media (max-width: 640px) {
-  .hero { padding: 48px 0 32px; }
-  .title { font-size: 34px; }
-  .intro { font-size: 21px; max-width: 420px; }
-  .stack { padding: 48px 0; }
-  .sectionHeading { flex-direction: column; gap: 24px; margin-bottom: 32px; }
-  .sectionHeading h2 { font-size: 34px; }
-  .techGrid { grid-template-columns: 1fr; gap: 16px; }
-  .techCard { padding: 24px; }
-  .cardTop { margin-bottom: 32px; }
-  .actions { gap: 12px; }
+  .tool { font-size: 21px; }
+  .techGrid { grid-template-columns: 1fr; gap: 14px; }
+  .techCardBody { padding: 24px; }
+  .techIcon { margin-bottom: 28px; }
+  .recentGrid { grid-template-columns: 1fr; }
+  .recentGrid > :nth-child(3) { display: flex; }
 }
-@media (max-width: 419px) { .title { font-size: 28px; } .primaryButton, .secondaryButton { padding-inline: 20px; } }

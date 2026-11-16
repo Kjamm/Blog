@@ -1,0 +1,9 @@
+.backdrop {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  opacity: 0.65;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 30%, #000 60%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 30%, #000 60%, transparent);
+  pointer-events: none;
+}

@@ -1,0 +1,78 @@
+.scene {
+  position: relative;
+  background: var(--bg-deep);
+  border-block: 1px solid var(--hairline);
+}
+
+.pin {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(28px, 6svh, 64px);
+  height: 100svh;
+  padding-top: var(--header-height);
+  overflow: hidden;
+}
+
+.heading { color: var(--muted); font-size: clamp(18px, 1.6vw, 22px); font-weight: 400; }
+
+.track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  padding-left: max(40px, calc((100vw - var(--container-width)) / 2 + 40px));
+  padding-right: 18vw;
+  list-style: none;
+  will-change: transform;
+}
+
+.item { display: flex; align-items: center; }
+
+/* A glowing node between terms, like the ones on the timeline. */
+.item + .item::before {
+  content: '';
+  flex: none;
+  width: clamp(10px, 1.1vw, 16px);
+  aspect-ratio: 1;
+  margin: 0 clamp(36px, 6vw, 96px);
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 24px 2px var(--accent);
+}
+
+.word {
+  display: block;
+  padding-bottom: 0.12em;
+  font-family: var(--font-display);
+  font-size: clamp(64px, 13vw, 196px);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.05em;
+  white-space: nowrap;
+  background: linear-gradient(100deg, #ffffff 0%, var(--ink) 30%, var(--accent) 62%, var(--glint) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.rail { display: block; height: 2px; border-radius: 2px; background: var(--hairline); overflow: hidden; }
+
+.railFill {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--violet), var(--accent));
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+}
+
+@media (max-width: 640px) {
+  .track { padding-left: 20px; }
+}
+
+/* No pinning and no sideways travel: the terms simply wrap. */
+@media (prefers-reduced-motion: reduce) {
+  .pin { height: auto; padding: clamp(64px, 10svh, 120px) 0; overflow: visible; }
+  .track { flex-wrap: wrap; width: auto; gap: 12px 0; padding-right: 40px; }
+  .word { font-size: clamp(36px, 6vw, 72px); }
+  .rail { display: none; }
+}

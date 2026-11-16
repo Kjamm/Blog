@@ -1,73 +1,123 @@
+/*
+ * Design tokens — "gel under UV".
+ * A dark-room indigo ground, soft lavender for anything you can act on,
+ * UV violet for atmosphere, and a cool sky glint where light catches an edge.
+ */
 :root {
-  --primary: #0066cc;
-  --primary-focus: #0071e3;
-  --primary-on-dark: #2997ff;
-  --primary-foreground: #ffffff;
-  --secondary: #1d1d1f;
-  --secondary-foreground: #ffffff;
-  --accent: var(--primary);
-  --background: #ffffff;
-  --background-subtle: #f5f5f7;
-  --card-bg: #ffffff;
-  --surface-pearl: #fafafc;
-  --surface-dark: #272729;
-  --surface-dark-raised: #2a2a2c;
-  --surface-black: #000000;
-  --on-dark: #ffffff;
-  --on-dark-muted: #cccccc;
-  --foreground: #1d1d1f;
-  --muted: #6e6e73;
-  --muted-light: #7a7a7a;
-  --border: #e0e0e0;
-  --divider: #f0f0f0;
-  --radius: 18px;
-  --container-width: 1200px;
-  --header-height: 44px;
-  --font-body: 'SF Pro Text', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  --font-display: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-}
+  color-scheme: dark;
 
-[data-theme='dark'] {
-  --background: #252527;
-  --background-subtle: #272729;
-  --card-bg: #2a2a2c;
-  --surface-pearl: #2a2a2c;
-  --foreground: #ffffff;
-  --muted: #cccccc;
-  --muted-light: #cccccc;
-  --border: #424245;
-  --divider: #424245;
-  --accent: var(--primary-on-dark);
+  --bg: #0a0818;
+  --bg-deep: #06050f;
+  --surface: #131029;
+  --surface-raised: #1a1636;
+  --ink: #ece9f5;
+  --muted: #a39fbd;
+  --faint: #8d88ab;
+  --accent: #b4a6ff;
+  --accent-ink: #140f2e;
+  --violet: #7f6dff;
+  --glint: #8fd0ff;
+  --hairline: rgba(236, 233, 245, 0.1);
+  --hairline-strong: rgba(236, 233, 245, 0.2);
+
+  /* Read as hex by the WebGL helix. */
+  --helix-a: #8fd0ff;
+  --helix-b: #8f7bff;
+  --helix-c: #d9d4f2;
+
+  --radius: 20px;
+  --radius-sm: 10px;
+  --container-width: 1240px;
+  --header-height: 72px;
+
+  --font-body: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, 'Apple SD Gothic Neo', sans-serif;
+  --font-display: var(--font-bricolage), 'Pretendard Variable', Pretendard, system-ui, sans-serif;
+  --font-mono: ui-monospace, 'SFMono-Regular', 'JetBrains Mono', Menlo, Consolas, monospace;
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+
+  --vt-exit: 140ms;
+  --vt-enter: 240ms;
 }
 
 * { box-sizing: border-box; padding: 0; margin: 0; }
-html { scroll-padding-top: 68px; }
+
+html {
+  scroll-padding-top: calc(var(--header-height) + 16px);
+  background: var(--bg);
+}
+
 body {
   font-family: var(--font-body);
   font-size: 17px;
-  line-height: 1.47;
-  letter-spacing: -0.374px;
-  background: var(--background);
-  color: var(--foreground);
+  line-height: 1.6;
+  background: var(--bg);
+  color: var(--ink);
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
 }
+
 a { color: inherit; text-decoration: none; }
-button, input { font: inherit; }
+button, input { font: inherit; color: inherit; }
 button { background: none; border: none; cursor: pointer; }
 button, a { -webkit-tap-highlight-color: transparent; }
+img { max-width: 100%; }
+
 a:focus-visible, button:focus-visible, input:focus-visible {
-  outline: 2px solid var(--primary-focus);
+  outline: 2px solid var(--accent);
   outline-offset: 4px;
+  border-radius: 6px;
 }
-button:active { transform: scale(0.95); }
-::selection { background: var(--primary); color: var(--primary-foreground); }
-.site-main { min-height: calc(100svh - var(--header-height)); }
-.container { width: 100%; max-width: var(--container-width); margin: 0 auto; padding: 0 32px; }
+
+::selection { background: var(--accent); color: var(--accent-ink); }
+
+.site-main { min-height: 100svh; }
+.container { width: 100%; max-width: var(--container-width); margin: 0 auto; padding: 0 40px; }
+.page-top { padding-top: var(--header-height); }
+
 .visually-hidden {
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
   overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
 }
-@media (max-width: 640px) { .container { padding: 0 24px; } }
+
+@media (max-width: 640px) {
+  .container { padding: 0 20px; }
+}
+
+/* ---- Page transitions (React <ViewTransition>) ---- */
+@keyframes vt-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes vt-rise { from { transform: translateY(14px); } to { transform: translateY(0); } }
+
+::view-transition-old(.page-out) {
+  animation: var(--vt-exit) ease-in both vt-fade reverse;
+}
+::view-transition-new(.page-in) {
+  animation:
+    var(--vt-enter) var(--ease-out) var(--vt-exit) both vt-fade,
+    calc(var(--vt-enter) + var(--vt-exit)) var(--ease-out) both vt-rise;
+}
+
+/* The header stays put while pages swap; it has a backdrop blur, so drop the old snapshot. */
+::view-transition-group(site-header) { animation: none; z-index: 100; }
+::view-transition-old(site-header) { display: none; }
+::view-transition-new(site-header) { animation: none; }
+
+/* Unnamed content should not cross-fade behind the page animation. */
+::view-transition-old(root) { display: none; }
+::view-transition-new(root) { animation: none; }
+
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
 }

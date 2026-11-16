@@ -1,28 +1,61 @@
 .footer {
-    border-top: 1px solid var(--border);
-    padding: 48px 0;
-    margin-top: 80px;
-    background: var(--background-subtle);
+  position: relative;
+  border-top: 1px solid var(--hairline);
+  background: var(--bg-deep);
+  overflow: hidden;
 }
 
 .inner {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-top: 56px;
+  padding-bottom: 40px;
 }
 
-.copy {
-    color: var(--muted);
-    font-size: 0.875rem;
+/* The wordmark doubles as the closing image: large, cropped by the footer's edge. */
+.name {
+  font-family: var(--font-display);
+  font-size: clamp(64px, 17vw, 240px);
+  font-weight: 700;
+  line-height: 0.82;
+  letter-spacing: -0.05em;
+  white-space: nowrap;
+  color: var(--surface);
+  user-select: none;
+  position: relative;
+  width: max-content;
+  max-width: 100%;
+  padding-bottom: 0.1em;
+}
+
+.nameFill {
+  position: absolute;
+  inset: 0;
+  padding-bottom: 0.1em;
+  background: linear-gradient(100deg, var(--ink) 0%, var(--accent) 55%, var(--glint) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  will-change: clip-path;
 }
 
 .links {
-    display: flex;
-    gap: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 28px;
 }
 
 .link {
-    color: var(--muted);
-    font-size: 0.875rem;
-    font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 44px;
+  color: var(--muted);
+  font-size: 15px;
+  transition: color 160ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .link:hover { color: var(--accent); }
 }

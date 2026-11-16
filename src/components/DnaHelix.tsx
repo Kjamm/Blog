@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { Move, Pause, Play, RotateCcw } from 'lucide-react';
+import { ScrollTrigger } from '@/lib/gsap';
 import styles from './DnaHelix.module.css';
 
 const vertexSource = `
@@ -41,7 +42,7 @@ const fragmentSource = `
     if (radius > 1.0) discard;
     vec3 color = vTone < 0.55 ? uBlue : (vTone < 0.9 ? uSilver : uInk);
     float light = 0.82 + 0.18 * sqrt(1.0 - radius);
-    float alpha = (1.0 - smoothstep(0.65, 1.0, radius)) * mix(0.24, 0.85, vDepth);
+    float alpha = (1.0 - smoothstep(0.35, 1.0, radius)) * mix(0.16, 0.6, vDepth);
     gl_FragColor = vec4(color * light, alpha);
   }
 `;
@@ -121,14 +122,15 @@ function createRenderer(canvas: HTMLCanvasElement) {
     gl.vertexAttribPointer(location, size, gl.FLOAT, false, 20, offset);
   }
   gl.enable(gl.BLEND);
-  // Preserve coverage alpha for the browser's premultiplied canvas composite.
-  gl.blendFuncSeparate(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA, gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+  // Additive colour so overlapping particles glow on the dark stage; alpha still
+  // accumulates normally for the browser's premultiplied canvas composite.
+  gl.blendFuncSeparate(gl.SRC_ALPHA, gl.ONE, gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
   const rotation = gl.getUniformLocation(program, 'uRotation');
   const resolution = gl.getUniformLocation(program, 'uResolution');
   const pixelRatio = gl.getUniformLocation(program, 'uPixelRatio');
   const palette = () => {
     const css = getComputedStyle(canvas);
-    for (const [uniform, token] of [['uBlue', '--accent'], ['uSilver', '--border'], ['uInk', '--muted']] as const) {
+    for (const [uniform, token] of [['uBlue', '--helix-a'], ['uSilver', '--helix-b'], ['uInk', '--helix-c']] as const) {
       const hex = css.getPropertyValue(token).trim().replace('#', '');
       const value = parseInt(hex, 16);
       gl.uniform3f(gl.getUniformLocation(program, uniform), (value >> 16 & 255) / 255, (value >> 8 & 255) / 255, (value & 255) / 255);
@@ -206,6 +208,21 @@ export default function DnaHelix() {
     const intersection = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; if (visible) start(); else stop(); });
     intersection.observe(canvas);
     const visibility = () => { if (document.hidden) stop(); else start(); };
+    // Scrolling the page turns the helix: each pixel scrolled adds a little rotation.
+    // ScrollTrigger reports the position on the same tick as the smooth scroller.
+    let lastScroll = 0;
+    const spin = ScrollTrigger.create({
+      start: 0,
+      end: 'max',
+      onRefresh: self => { lastScroll = self.scroll(); },
+      onUpdate: self => {
+        const position = self.scroll();
+        const delta = position - lastScroll;
+        lastScroll = position;
+        if (reduced || motion.current.paused || motion.current.dragging) return;
+        motion.current.y += Math.max(-120, Math.min(120, delta)) * 0.0022;
+      },
+    });
     const preference = () => { reduced = media.matches; motion.current.paused = reduced; setPaused(reduced); dirty = true; };
     const theme = new MutationObserver(() => { renderer.palette(); dirty = true; });
     theme.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme', 'class', 'style'] });
@@ -221,6 +238,7 @@ export default function DnaHelix() {
     return () => {
       stop(); resize.disconnect(); intersection.disconnect(); theme.disconnect(); renderer.dispose();
       document.removeEventListener('visibilitychange', visibility);
+      spin.kill();
       media.removeEventListener('change', preference);
       canvas.removeEventListener('webglcontextlost', lost);
       canvas.removeEventListener('webglcontextrestored', restored);

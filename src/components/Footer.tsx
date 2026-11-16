@@ -1,17 +1,22 @@
-import styles from './Footer.module.css';
 import Link from 'next/link';
+import { ArrowUpRight } from 'lucide-react';
+import FooterName from './FooterName';
+import styles from './Footer.module.css';
 
 export default function Footer() {
     return (
         <footer className={styles.footer}>
             <div className={`container ${styles.inner}`}>
-                <div className={styles.links}>
-                    <Link href="#" className={styles.link}>Recruit</Link>
-                    <Link href="#" className={styles.link}>Privacy</Link>
-                    <Link href="#" className={styles.link}>Terms</Link>
-                </div>
-                <p className={styles.copy}>
-                </p>
+                <FooterName />
+                <nav className={styles.links} aria-label="Footer">
+                    <Link href="/" className={styles.link}>About me</Link>
+                    <Link href="/experience" className={styles.link}>Experience</Link>
+                    <Link href="/portfolio" className={styles.link}>Portfolio</Link>
+                    <Link href="/blog" className={styles.link}>Blog</Link>
+                    <a href="https://github.com/Kjamm" target="_blank" rel="noopener noreferrer" className={styles.link}>
+                        GitHub <ArrowUpRight size={15} aria-hidden="true" />
+                    </a>
+                </nav>
             </div>
         </footer>
     );

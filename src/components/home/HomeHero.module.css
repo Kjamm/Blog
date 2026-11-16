@@ -1,0 +1,194 @@
+.hero {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: 100svh;
+  padding: calc(var(--header-height) + 24px) 0 clamp(40px, 8svh, 96px);
+  overflow: clip;
+  isolation: isolate;
+}
+
+/* Nucleotide field: densest around the helix, gone before it reaches the copy. */
+.sequence {
+  position: absolute;
+  z-index: -3;
+  inset: 0;
+  -webkit-mask-image: radial-gradient(ellipse 62% 78% at 72% 46%, #000 12%, transparent 76%);
+  mask-image: radial-gradient(ellipse 62% 78% at 72% 46%, #000 12%, transparent 76%);
+  pointer-events: none;
+}
+
+.rays {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  opacity: 0.45;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+/* UV wash behind the helix. */
+.glow {
+  position: absolute;
+  z-index: -2;
+  top: 50%;
+  right: -12%;
+  width: min(78vw, 980px);
+  aspect-ratio: 1;
+  transform: translateY(-52%);
+  background: radial-gradient(closest-side, rgba(143, 123, 255, 0.26), rgba(143, 123, 255, 0.07) 55%, transparent);
+  pointer-events: none;
+}
+
+.helix {
+  position: absolute;
+  z-index: -1;
+  top: calc(var(--header-height) + 8px);
+  right: max(2vw, calc((100vw - var(--container-width)) / 2 - 40px));
+  bottom: 12px;
+  width: min(54vw, 700px);
+  display: flex;
+  align-items: stretch;
+}
+
+.helixDepth { display: flex; flex: 1 1 auto; min-width: 0; transform-origin: 50% 45%; will-change: transform; }
+
+.copy {
+  position: relative;
+  pointer-events: none;
+}
+
+.copy a, .copy button { pointer-events: auto; }
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-display);
+}
+
+.hello {
+  font-size: clamp(20px, 2.4vw, 30px);
+  font-weight: 400;
+  color: var(--muted);
+  letter-spacing: -0.01em;
+}
+
+.name {
+  margin-top: 4px;
+  font-size: clamp(44px, 11.2vw, 168px);
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+  white-space: nowrap;
+  font-kerning: none;
+  /* Light catching the letters: white through lavender into the sky glint. */
+  background-image:
+    linear-gradient(100deg, transparent 42%, rgba(255, 255, 255, 0.95) 50%, transparent 58%),
+    linear-gradient(96deg, #ffffff 0%, var(--ink) 38%, var(--accent) 68%, var(--glint) 100%);
+  background-size: 220% 100%, 100% 100%;
+  background-position: 160% 0, 0 0;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  padding-bottom: 0.06em;
+}
+
+.intro {
+  max-width: 30ch;
+  margin-top: clamp(20px, 3.4svh, 36px);
+  font-size: clamp(19px, 1.9vw, 24px);
+  font-weight: 300;
+  line-height: 1.45;
+  color: var(--ink);
+  text-wrap: pretty;
+}
+
+.focus {
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: clamp(17px, 1.5vw, 20px);
+}
+
+.focusTerm {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: clamp(24px, 4svh, 40px);
+}
+
+.primaryButton, .secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  min-height: 50px;
+  padding: 0 28px;
+  border-radius: 9999px;
+  font-weight: 500;
+  transition: transform 160ms var(--ease-out), background-color 160ms ease, box-shadow 160ms ease;
+}
+
+.primaryButton {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.secondaryButton {
+  color: var(--ink);
+  box-shadow: inset 0 0 0 1px var(--hairline-strong);
+  background: rgba(19, 16, 41, 0.5);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.textLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 44px;
+  padding: 0 10px;
+  color: var(--accent);
+}
+
+.primaryButton:active, .secondaryButton:active, .textLink:active { transform: scale(0.97); }
+
+@media (hover: hover) and (pointer: fine) {
+  .primaryButton:hover { box-shadow: 0 0 32px -6px var(--accent); }
+  .secondaryButton:hover { box-shadow: inset 0 0 0 1px var(--accent); }
+}
+
+/* Start hidden only when motion will bring these in. */
+@media (prefers-reduced-motion: no-preference) {
+  .hero [data-reveal] { opacity: 0; }
+}
+
+@media (max-width: 833px) {
+  .hero {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-end;
+  }
+  .helix {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    flex: 1 1 auto;
+    min-height: 300px;
+    max-height: 46svh;
+    justify-content: center;
+  }
+  .glow { top: 30%; right: -30%; width: 130vw; }
+  .sequence {
+    -webkit-mask-image: radial-gradient(ellipse 95% 46% at 50% 30%, #000 10%, transparent 80%);
+    mask-image: radial-gradient(ellipse 95% 46% at 50% 30%, #000 10%, transparent 80%);
+  }
+  .intro { max-width: 34ch; }
+}

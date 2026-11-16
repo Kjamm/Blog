@@ -1,9 +1,95 @@
-.header { height: var(--header-height); background: var(--surface-black); color: var(--on-dark); position: sticky; top: 0; z-index: 100; }
-.inner { display: flex; align-items: center; height: 100%; gap: 40px; }
-.logo { font-size: 14px; font-weight: 600; white-space: nowrap; margin-right: auto; min-height: 44px; display: flex; align-items: center; }
-.nav { display: flex; align-items: center; gap: 32px; }
-.link { display: flex; align-items: center; min-height: 44px; font-size: 12px; font-weight: 400; letter-spacing: -0.12px; white-space: nowrap; color: var(--on-dark-muted); }
-.iconBtn { display: flex; align-items: center; justify-content: center; color: var(--on-dark-muted); width: 44px; height: 44px; flex-shrink: 0; }
-.iconBtn svg { width: 16px; height: 16px; stroke-width: 1.5; }
-@media (max-width: 640px) { .inner { gap: 8px; padding-inline: 16px; } .nav { gap: 16px; } .logo { font-size: 12px; } .iconBtn { width: 44px; } }
-@media (max-width: 359px) { .nav { gap: 10px; } .inner { padding-inline: 12px; gap: 4px; } }
+.header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 100;
+  height: var(--header-height);
+  padding-top: 12px;
+  pointer-events: none;
+}
+
+/* One floating glass bar holds the wordmark, the links and search. */
+.bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 52px;
+  padding: 0 6px 0 22px;
+  border-radius: 9999px;
+  background: rgba(13, 11, 30, 0.93);
+  -webkit-backdrop-filter: blur(18px) saturate(170%);
+  backdrop-filter: blur(18px) saturate(170%);
+  pointer-events: auto;
+}
+
+/* Hairline edge that picks up the two lights of the page. */
+.bar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(100deg, rgba(236, 233, 245, 0.16), rgba(127, 109, 255, 0.45) 55%, rgba(143, 208, 255, 0.5));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  pointer-events: none;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: none;
+  min-height: 44px;
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.mark {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 12px 1px var(--accent);
+}
+
+.navSlot { position: relative; display: flex; flex: 1 1 0; min-width: 0; justify-content: flex-end; }
+
+/* Doubled class: the collapsed menu button belongs on the right, next to search. */
+.nav.nav[data-collapsed] { justify-content: flex-end; }
+
+/* The links sit directly on the bar; only the dropdown needs a surface of its own. */
+.nav.nav :global(.pill-nav__panel) {
+  background: rgba(13, 11, 30, 0.94);
+  box-shadow: inset 0 0 0 1px var(--hairline-strong), 0 24px 48px -20px rgba(0, 0, 0, 0.8);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+}
+
+.divider { flex: none; width: 1px; height: 20px; margin: 0 4px; background: var(--hairline-strong); }
+
+.iconBtn {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: var(--muted);
+  transition: color 160ms ease, background-color 160ms ease, transform 160ms var(--ease-out);
+}
+
+.iconBtn:active { transform: scale(0.95); }
+
+@media (hover: hover) and (pointer: fine) {
+  .iconBtn:hover { color: var(--ink); background: rgba(236, 233, 245, 0.1); }
+}
+
+@media (max-width: 640px) {
+  .bar { padding-left: 18px; }
+  .logo { font-size: 16px; }
+}

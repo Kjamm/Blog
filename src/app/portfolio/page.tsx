@@ -1,3 +1,5 @@
+import ListingHeader from "@/components/ListingHeader";
+import PageTransition from "@/components/PageTransition";
 import PostList from "@/components/PostList";
 import { getSortedPortfolioData } from "@/lib/posts";
 import styles from "@/app/page.module.css";
@@ -11,17 +13,13 @@ export default function PortfolioPage() {
     const projects = getSortedPortfolioData();
 
     return (
-        <div className={styles.listing}>
-          <div className="container">
-            <div className={styles.pageHeading}>
-                <p className={styles.eyebrow}>Projects & experience</p>
-                <h1 className={styles.pageTitle}>
-                    Portfolio.
-                </h1>
+        <PageTransition>
+            <div className={styles.listing}>
+                <ListingHeader title="Portfolio." description="Projects & experience" />
+                <div className="container">
+                    <PostList allPosts={projects} basePath="/portfolio" />
+                </div>
             </div>
-
-            <PostList allPosts={projects} basePath="/portfolio" />
-          </div>
-        </div>
+        </PageTransition>
     );
 }

@@ -77,5 +77,6 @@ export const projects: Entry[] = [
         location: 'Korea',
         details: ['Create a more powerful college student note-taking application using AI'],
         href: '/portfolio/Kakao_Tech_Campus',
+        external: { label: 'GitHub', url: 'https://github.com/Kjamm/NOTAI' },
     },
 ];

@@ -1,5 +1,5 @@
 ---
-title: "Kakao Tech Campus"
+title: "Pdb2MCSM"
 date: "2026.07.16"
 tag: "BioInformatics Tool"
 excerpt: "The easiest way to use MCSM-PPI2"
@@ -365,3 +365,5 @@ pdb2mcsm은 그러한 관심에서 출발한 프로젝트이다.
 생명과학적 문제를 컴퓨터 과학적으로 정의하고, 이를 알고리즘과 소프트웨어로 해결하는 것.
 
 이것이 pdb2mcsm을 통해 추구한 방향이다.
+
+[https://github.com/Kjamm/pdb2mcsm](github 바로가기)

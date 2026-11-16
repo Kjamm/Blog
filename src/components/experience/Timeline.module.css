@@ -80,6 +80,16 @@
   list-style: none;
 }
 
+.external {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 44px;
+  margin-top: 2px;
+  color: var(--accent);
+  font-size: 15px;
+}
+
 @media (max-width: 720px) {
   .timeline { padding-left: 28px; }
   .list { gap: 32px; }

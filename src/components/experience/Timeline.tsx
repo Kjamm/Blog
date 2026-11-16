@@ -61,6 +61,11 @@ export default function Timeline({ entries }: { entries: Entry[] }) {
                                 {entry.details.map(detail => <li key={detail}>{detail}</li>)}
                             </ul>
                         )}
+                        {entry.external && (
+                            <a href={entry.external.url} target="_blank" rel="noopener noreferrer" className={styles.external}>
+                                {entry.external.label} <ArrowUpRight size={15} aria-hidden="true" />
+                            </a>
+                        )}
                     </div>
                 </li>
             ))}

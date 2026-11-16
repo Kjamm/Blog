@@ -9,6 +9,8 @@ export interface Entry {
     details?: string[];
     /** Internal link, e.g. to the matching portfolio page. */
     href?: string;
+    /** External link shown under the entry, e.g. the source repository. */
+    external?: { label: string; url: string };
 }
 
 export const profile = {
@@ -60,6 +62,14 @@ export const researchExperience: Entry[] = [
 ];
 
 export const projects: Entry[] = [
+    {
+        period: 'Jul. 2026',
+        title: 'pdb2mcsm',
+        organization: 'Open-source project',
+        details: ['Automatically preprocesses protein complex PDB files for mCSM-PPI2 analysis'],
+        href: '/portfolio/Pdb2Mcsm',
+        external: { label: 'GitHub', url: 'https://github.com/Kjamm/pdb2mcsm' },
+    },
     {
         period: 'Jul. 2024 – Present',
         title: 'NOTAI',
